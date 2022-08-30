@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <title>House Price Prediction</title>
+        <!-- <script src="app.js"></script> -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <link
+            type="text/css"
+            rel="stylesheet"
+            href="{{url_for('static', filename='index.css')}}"
+        />
+    </head>
+    <body>
+        <form class="form" action="/house_price_predict" method="POST">
+            <h2>Area(in sq. ft.)</h2>
+            <input
+                type="email"
+                class="area"
+                id="uiSqft"
+                class="floatLabel"
+                name="SquareFt"
+                value="1000"
+            />
+            <h2>BHK</h2>
+            <div class="switch-field">
+                <input type="radio" id="radio-bhk-1" name="uiBHK" value="1" />
+                <label for="radio-bhk-1">1</label>
+                <input
+                    type="radio"
+                    id="radio-bhk-2"
+                    name="uiBHK"
+                    value="2"
+                    checked
+                />
+                <label for="radio-bhk-2">2</label>
+                <input type="radio" id="radio-bhk-3" name="uiBHK" value="3" />
+                <label for="radio-bhk-3">3</label>
+                <input type="radio" id="radio-bhk-4" name="uiBHK" value="4" />
+                <label for="radio-bhk-4">4</label>
+                <input type="radio" id="radio-bhk-5" name="uiBHK" value="5" />
+                <label for="radio-bhk-5">5</label>
+            </div>
+            <!-- </form>
+        <form class="form"> -->
+            <h2>Bath</h2>
+            <div class="switch-field">
+                <input type="radio" id="radio-bath-1" name="uiBath" value="1" />
+                <label for="radio-bath-1">1</label>
+                <input
+                    type="radio"
+                    id="radio-bath-2"
+                    name="uiBath"
+                    value="2"
+                    checked
+                />
+                <label for="radio-bath-2">2</label>
+                <input type="radio" id="radio-bath-3" name="uiBath" value="3" />
+                <label for="radio-bath-3">3</label>
+                <input type="radio" id="radio-bath-4" name="uiBath" value="4" />
+                <label for="radio-bath-4">4</label>
+                <input type="radio" id="radio-bath-5" name="uiBath" value="5" />
+                <label for="radio-bath-5">5</label>
+            </div>
+            <h2>Balcony</h2>
+            <div class="switch-field">
+                <input
+                    type="radio"
+                    id="radio-balcony-1"
+                    name="uiBalcony"
+                    value="1"
+                />
+                <label for="radio-balcony-1">1</label>
+                <input
+                    type="radio"
+                    id="radio-balcony-2"
+                    name="uiBalcony"
+                    value="2"
+                    checked
+                />
+                <label for="radio-balcony-2">2</label>
+                <input
+                    type="radio"
+                    id="radio-balcony-3"
+                    name="uiBalcony"
+                    value="3"
+                />
+                <label for="radio-balcony-3">3</label>
+                <input
+                    type="radio"
+                    id="radio-balcony-4"
+                    name="uiBalcony"
+                    value="4"
+                />
+                <label for="radio-balcony-4">4</label>
+                <input
+                    type="radio"
+                    id="radio-balcony-5"
+                    name="uiBalcony"
+                    value="5"
+                />
+                <label for="radio-balcony-5">5</label>
+            </div>
+            <h2>Location</h2>
+            <select class="location" name="" id="uiLocation">
+                <option value="" disabled="disabled" selected="selected">
+                    Choose a Location
+                </option>
+                <option>Alandi Road</option>
+                <option>Aundh Road</option>
+            </select>
+        </form>
+        <button class="submit" type="button">Estimate Price:</button>
+        <div id="uiEstimatedPrice" class="result">
+            {% if result %}
+            <h2>Result is : {{result}}</h2>
+            {{% endif %}}
+        </div>
+    </body>
+</html>
