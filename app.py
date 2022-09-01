@@ -1,5 +1,4 @@
 from flask import Flask, render_template, jsonify, request, make_response, url_for, redirect
-import numpy as np
 import util
 import pickle
 
