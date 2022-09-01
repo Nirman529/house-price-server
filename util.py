@@ -21,6 +21,7 @@ def get_estimated_price(location, total_sqft, bhk, bath, balcony):
     if(loc_index >= 0):
         x[loc_index] = 1
 
+    print("value : ", round(__model.predict([x])[0], 2))
     return round(__model.predict([x])[0], 2)
 
 
