@@ -20,6 +20,7 @@
                 name="SquareFt"
                 value="1000"
             />
+
             <h2>BHK</h2>
             <div class="switch-field">
                 <input type="radio" id="radio-bhk-1" name="uiBHK" value="1" />
@@ -39,8 +40,7 @@
                 <input type="radio" id="radio-bhk-5" name="uiBHK" value="5" />
                 <label for="radio-bhk-5">5</label>
             </div>
-            <!-- </form>
-        <form class="form"> -->
+
             <h2>Bath</h2>
             <div class="switch-field">
                 <input type="radio" id="radio-bath-1" name="uiBath" value="1" />
@@ -60,6 +60,7 @@
                 <input type="radio" id="radio-bath-5" name="uiBath" value="5" />
                 <label for="radio-bath-5">5</label>
             </div>
+
             <h2>Balcony</h2>
             <div class="switch-field">
                 <input
@@ -99,16 +100,23 @@
                 />
                 <label for="radio-balcony-5">5</label>
             </div>
+
             <h2>Location</h2>
             <select class="location" name="" id="uiLocation">
                 <option value="" disabled="disabled" selected="selected">
                     Choose a Location
                 </option>
-                <option>Alandi Road</option>
-                <option>Aundh Road</option>
+
+                <!-- <option>Alandi Road</option>
+                <option>Aundh Road</option> -->
+
+                {% for loc in response %}
+                <option value="{{loc}}">{{loc}}</option>
+                {% endfor %}
             </select>
         </form>
-        <button class="submit" type="button">Estimate Price:</button>
-        <div id="uiEstimatedPrice" class="result"></div>
+
+        <button class="submit" type="button">Estimate Price</button>
+        <div id="uiEstimatedPrice" class="result"><h2></h2></div>
     </body>
 </html>

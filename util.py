@@ -25,6 +25,7 @@ def get_estimated_price(location, total_sqft, bhk, bath, balcony):
 
 
 def get_location_names():
+    # print(__location)
     return __location
 
 

@@ -1,4 +1,5 @@
 from unittest import result
+from urllib import response
 from flask import Flask, render_template, jsonify, request, make_response, url_for, redirect
 import numpy as np
 import util
@@ -14,7 +15,11 @@ model = pickle.load(open('artifacts/house_price_predict_model.pickle', 'rb'))
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    response = util.get_location_names()
+    # location = jsonify(response)'
+    # print("Loc", json.dumps(get_location_names()))
+    # response = ["abc", "def"]
+    return render_template('index.html', response=response)
 
 
 @app.route('/get_location_names')
@@ -23,6 +28,7 @@ def get_location_names():
         'locations': util.get_location_names()
     })
     response.headers.add('Access-Control-Allow-Origin', '*')
+    print("res : ", util.get_location_names())
     return response
 
 
@@ -44,7 +50,7 @@ def predict_home_price():
     output = request.form.to_dict()
     result = output['result']
 
-    return render_template('index.html', result=result)
+    return render_template('result.html', result=result)
 
 
 if __name__ == '__main__':
