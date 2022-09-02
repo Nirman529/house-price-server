@@ -71,7 +71,7 @@ def load_model():
     return __model
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
     response_loc = get_location_names()
     # location = jsonify(response)'
