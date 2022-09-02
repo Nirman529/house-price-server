@@ -37,7 +37,7 @@ def get_estimated_price(location, total_sqft, bhk, bath, balcony):
 
 
 def get_data_columns():
-    with open('artifacts\columns.json', 'r') as f:
+    with open('artifacts/columns.json', 'r') as f:
         # print('loading data columns and location.')
         __data_columns = json.load(f)['data_columns']
         # __location = __data_columns[3:]
@@ -46,7 +46,7 @@ def get_data_columns():
 
 def get_location_names():
     # # print(__location)artifacts\columns.json
-    with open('artifacts\columns.json', 'r') as f:
+    with open('artifacts/columns.json', 'r') as f:
         # print('loading data columns and location.')
         __data_columns = json.load(f)['data_columns']
         __location = __data_columns[3:]
@@ -65,7 +65,7 @@ def load_model():
     #     __data_columns = json.load(f)['data_columns']
     #     __location = __data_columns[3:]
 
-    with open('artifacts\house_price_predict_model.pickle', 'rb') as f:
+    with open('artifacts/house_price_predict_model.pickle', 'rb') as f:
         __model = pickle.load(f)
 
     return __model
