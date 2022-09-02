@@ -45,8 +45,8 @@ def get_data_columns():
 
 
 def get_location_names():
-    # # print(__location)
-    with open('artifacts\\columns.json', 'r') as f:
+    # # print(__location)artifacts\columns.json
+    with open('artifacts\columns.json', 'r') as f:
         # print('loading data columns and location.')
         __data_columns = json.load(f)['data_columns']
         __location = __data_columns[3:]
