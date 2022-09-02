@@ -1,6 +1,6 @@
 import numpy as np
 import json
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, request
 # import util
 import pickle
 
@@ -10,12 +10,15 @@ app = Flask(__name__)
 model = pickle.load(open('artifacts/house_price_predict_model.pickle', 'rb'))
 
 
-__location = None
-__data_columns = None
-__model = None
+# __location = None
+# __data_columns = None
+# __model = None
 
 
 def get_estimated_price(location, total_sqft, bhk, bath, balcony):
+    __model = load_model()
+    __data_columns = get_data_columns()
+
     try:
         loc_index = __data_columns.index(location.lower())
     except:
@@ -33,24 +36,39 @@ def get_estimated_price(location, total_sqft, bhk, bath, balcony):
     return round(__model.predict([x])[0], 2)
 
 
+def get_data_columns():
+    with open('artifacts\\columns.json', 'r') as f:
+        # print('loading data columns and location.')
+        __data_columns = json.load(f)['data_columns']
+        # __location = __data_columns[3:]
+    return __data_columns
+
+
 def get_location_names():
     # # print(__location)
-    return __location
-
-
-def load_saved_artifacts():
-    # print('loading saved artifacts')
-    global __data_columns
-    global __location
-    global __model
-
     with open('artifacts\\columns.json', 'r') as f:
         # print('loading data columns and location.')
         __data_columns = json.load(f)['data_columns']
         __location = __data_columns[3:]
+    return __location
+
+
+def load_model():
+    # print('loading saved artifacts')
+    # global __data_columns
+    # global __location
+    # global __model
+    __model = None
+
+    # with open('artifacts\\columns.json', 'r') as f:
+    #     # print('loading data columns and location.')
+    #     __data_columns = json.load(f)['data_columns']
+    #     __location = __data_columns[3:]
 
     with open('artifacts\\house_price_predict_model.pickle', 'rb') as f:
         __model = pickle.load(f)
+
+    return __model
 
 
 @app.route('/')
@@ -99,7 +117,8 @@ def predict_home_price():
 
 if __name__ == '__main__':
     # print("Starting flask server.")
-    load_saved_artifacts()
+    # load_saved_artifacts()
+    # print(__location)
 
     # util.load_saved_artifacts()
     app.run()
